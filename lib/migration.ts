@@ -125,7 +125,7 @@ class Migration {
   public render_process_1() {
     this.resolveRelations();
 
-    fs.moveSync(path.join(__dirname,"../../database/migrations/"),path.join(__dirname,"../../database/migrations_"+Date.now()+"/"))
+    fs.moveSync(path.join(process.cwd(),"../../database/migrations/"),path.join(process.cwd(),"../../database/migrations_"+(99999999999999-Date.now())+"/"))
 
     for(let table of this.tables) {
       if (!table.create_new) continue;

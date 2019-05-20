@@ -5,13 +5,14 @@ import * as _ from 'lodash'
 import Column from '../lib/column';
 import View from '../lib/view';
 import Migration from './../lib/migration';
+import * as path from 'path';
 
 class ModelEventObserverRegisterRenderer extends Renderer {
   public file: File;
   public migration: Migration;
   
   constructor(migration: Migration) {
-    super("../../app/Chombrain/modelobserverregister.php");
+    super(path.join(process.cwd(),"../../app/Chombrain/modelobserverregister.php"));
     this.migration = migration
   }
 

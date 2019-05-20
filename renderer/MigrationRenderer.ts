@@ -4,6 +4,7 @@ import Renderer from './Renderer';
 import * as _ from 'lodash'
 import Column from '../lib/column';
 import { isArray } from 'util';
+import * as path from 'path';
 
 class MigrationRenderer extends Renderer {
   public file: File;
@@ -12,7 +13,7 @@ class MigrationRenderer extends Renderer {
   constructor(table: Table) {
     var d = new Date()
     var d_str = d.getFullYear()+"_"+(d.getMonth()+1)+"_"+d.getDate()+"_"+(Date.now()%300000+100000)
-    super("../../database/migrations/"+d_str+"_create_"+table.name_raw.replace("___","_xxxx_").replace("__","_xxx_")+"_table.php")
+    super(path.join(process.cwd(),"../../database/migrations/"+d_str+"_create_"+table.name_raw.replace("___","_xxxx_").replace("__","_xxx_")+"_table.php"))
     this.table = table
   }
 

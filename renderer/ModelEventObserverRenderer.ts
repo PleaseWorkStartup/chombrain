@@ -4,13 +4,14 @@ import Renderer from './Renderer';
 import * as _ from 'lodash'
 import Column from '../lib/column';
 import View from '../lib/view';
+import * as path from 'path';
 
 class ModelEventObserverRenderer extends Renderer {
   public file: File;
   public table: Table;
   
   constructor(table: Table) {
-    super("../../app/Models/Chombrain/"+table.name+"/"+table.name+"EventObserver.php")
+    super(path.join(process.cwd(),"../../app/Models/Chombrain/"+table.name+"/"+table.name+"EventObserver.php"))
     this.table = table
   }
 

@@ -7,7 +7,7 @@ class File {
   public dirname: string;
 
   constructor(p: string) {
-    this.path = path.join(__dirname,p);
+    this.path = p;
     this.filename = path.basename(this.path)
     this.dirname = path.dirname(this.path)
     

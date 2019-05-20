@@ -1,48 +1,53 @@
-import * as _ from 'lodash';
-class RendererUtil {
-    constructor(table) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var _ = require("lodash");
+var RendererUtil = (function () {
+    function RendererUtil(table) {
         this.table = table;
     }
-    cols_fillables() {
+    RendererUtil.prototype.cols_fillables = function () {
         return _.map(_.filter(this.table.cols, '_fillable'), 'name');
-    }
-    cols_hidden() {
+    };
+    RendererUtil.prototype.cols_hidden = function () {
         return _.map(_.filter(this.table.cols, '_hidden'), 'name');
-    }
-    cols_name() {
+    };
+    RendererUtil.prototype.cols_name = function () {
         return _.map(this.table.cols, "name");
-    }
-    jsoncols() {
-        return _.map(_.filter(this.table.cols, (x) => x._type.native_type == "json"), "name");
-    }
-    jsoncasts() {
-        return _.map(this.jsoncols(), (name) => `'${name}' => 'array'`);
-    }
-    jsonattributes() {
-        return _.map(this.jsoncols(), (name) => `'${name}' => '[]'`);
-    }
-    cols_with() {
+    };
+    RendererUtil.prototype.jsoncols = function () {
+        return _.map(_.filter(this.table.cols, function (x) { return x._type.native_type == "json"; }), "name");
+    };
+    RendererUtil.prototype.jsoncasts = function () {
+        return _.map(this.jsoncols(), function (name) { return "'" + name + "' => 'array'"; });
+    };
+    RendererUtil.prototype.jsonattributes = function () {
+        return _.map(this.jsoncols(), function (name) { return "'" + name + "' => '[]'"; });
+    };
+    RendererUtil.prototype.cols_with = function () {
         return this.table.autoload;
-    }
-    cols_with_count() {
+    };
+    RendererUtil.prototype.cols_with_count = function () {
         return this.table.autocount;
-    }
-    renderParentRelations() {
-        let res = "";
-        for (let r of this.table.parentRelations) {
+    };
+    RendererUtil.prototype.renderParentRelations = function () {
+        var res = "";
+        for (var _i = 0, _a = this.table.parentRelations; _i < _a.length; _i++) {
+            var r = _a[_i];
             res += r.renderParent("Model");
             res += "\n";
         }
         return res;
-    }
-    renderChildRelations() {
-        let res = "";
-        for (let r of this.table.childRelations) {
+    };
+    RendererUtil.prototype.renderChildRelations = function () {
+        var res = "";
+        for (var _i = 0, _a = this.table.childRelations; _i < _a.length; _i++) {
+            var r = _a[_i];
             res += r.renderChild("Model");
             res += "\n";
         }
         return res;
-    }
-}
-export default RendererUtil;
+    };
+    return RendererUtil;
+}());
+exports.default = RendererUtil;
 //# sourceMappingURL=RendererUtil.js.map

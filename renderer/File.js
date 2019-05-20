@@ -1,8 +1,10 @@
-import * as path from 'path';
-import * as fs from 'fs';
-class File {
-    constructor(p) {
-        this.path = path.join(__dirname, p);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = require("path");
+var fs = require("fs");
+var File = (function () {
+    function File(p) {
+        this.path = p;
         this.filename = path.basename(this.path);
         this.dirname = path.dirname(this.path);
         if (!fs.existsSync(this.path)) {
@@ -11,23 +13,24 @@ class File {
             });
         }
     }
-    exist() {
+    File.prototype.exist = function () {
         return fs.existsSync(this.path);
-    }
-    read() {
+    };
+    File.prototype.read = function () {
         if (!fs.existsSync(this.path))
             return "";
         return fs.readFileSync(this.path, "utf8");
-    }
-    write(data) {
+    };
+    File.prototype.write = function (data) {
         fs.writeFileSync(this.path, data);
-    }
-    append(data) {
+    };
+    File.prototype.append = function (data) {
         fs.appendFileSync(this.path, data);
-    }
-    empty() {
+    };
+    File.prototype.empty = function () {
         this.write("");
-    }
-}
-export default File;
+    };
+    return File;
+}());
+exports.default = File;
 //# sourceMappingURL=File.js.map

@@ -2,13 +2,14 @@ import File from './File'
 import Table from '../lib/table';
 import Renderer from './Renderer';
 import * as _ from 'lodash'
+import * as path from 'path';
 
 class RepositoryRenderer extends Renderer {
   public file: File;
   public table: Table;
   
   constructor(table: Table) {
-    super("../../app/Repositories/Chombrain/"+table.name+"Repository.php")
+    super(path.join(process.cwd(),"../../app/Repositories/Chombrain/"+table.name+"Repository.php"))
     this.table = table
   }
 

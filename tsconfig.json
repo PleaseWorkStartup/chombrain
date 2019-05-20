@@ -7,7 +7,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "target": "ES6"
+    "target": "ES5"
   },
   "include": [
       "**/*"

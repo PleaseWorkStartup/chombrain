@@ -4,13 +4,15 @@ import Renderer from './Renderer';
 import * as _ from 'lodash'
 import RendererUtil from './RendererUtil';
 
+import * as path from 'path';
+
 class ModelRenderer extends Renderer {
   public file: File;
   public table: Table;
   public util: RendererUtil;
   
   constructor(table: Table) {
-    super("../../app/Models/Chombrain/"+table.name+".php")
+    super(path.join(process.cwd(),"../app/Models/Chombrain/"+table.name+".php"))
     this.table = table
     this.util = new RendererUtil(table);
   }

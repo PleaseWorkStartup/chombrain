@@ -2,13 +2,14 @@ import File from './File'
 import Table from '../lib/table';
 import Renderer from './Renderer';
 import * as _ from 'lodash'
+import * as path from 'path';
 
 class RouteRenderer extends Renderer {
   public file: File;
   public table: Table;
   
   constructor(table: Table) {
-    super("../../routes/Chombrain/"+table.name+".php")
+    super(path.join(process.cwd(),"../../routes/Chombrain/"+table.name+".php"))
     this.table = table
   }
 

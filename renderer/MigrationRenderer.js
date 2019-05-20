@@ -1,55 +1,40 @@
-import Renderer from './Renderer';
-import * as _ from 'lodash';
-class MigrationRenderer extends Renderer {
-    constructor(table) {
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Renderer_1 = require("./Renderer");
+var _ = require("lodash");
+var path = require("path");
+var MigrationRenderer = (function (_super) {
+    __extends(MigrationRenderer, _super);
+    function MigrationRenderer(table) {
+        var _this = this;
         var d = new Date();
         var d_str = d.getFullYear() + "_" + (d.getMonth() + 1) + "_" + d.getDate() + "_" + (Date.now() % 300000 + 100000);
-        super("../../database/migrations/" + d_str + "_create_" + table.name_raw.replace("___", "_xxxx_").replace("__", "_xxx_") + "_table.php");
-        this.table = table;
+        _this = _super.call(this, path.join(process.cwd(), "../../database/migrations/" + d_str + "_create_" + table.name_raw.replace("___", "_xxxx_").replace("__", "_xxx_") + "_table.php")) || this;
+        _this.table = table;
+        return _this;
     }
-    getRenderStr() {
-        let res = `<?php
-
-use Illuminate\\Support\\Facades\\Schema;
-use Illuminate\\Database\\Schema\\Blueprint;
-use Illuminate\\Database\\Migrations\\Migration;
-
-class Create${this.table.name.replace("__", "Xxxx").replace("_", "Xxx")}Table extends Migration
-{
-  /**
-   * Run the migrations.
-   *
-   * @return void
-   */
-  public function up()
-  {
-    Schema::create('${this.table.name_raw}', function (Blueprint $table) {
-      ${!this.table.findColumn("id").create_new ? "$table->increments('id');" : ""}
-      ${_.map(this.table.cols, (col) => col.render("Migration")).join("\n")}
-      $table->timestamps();
-
-      ${_.map(this.table.extra_index, (x) => "$table->index(" + JSON.stringify(x) + ");")}
-    });
-  }
-
-  /**
-   * Reverse the migrations.
-   *
-   * @return void
-   */
-  public function down()
-  {
-    Schema::dropIfExists('${this.table.name_raw}');
-  }
-
-}
-`;
+    MigrationRenderer.prototype.getRenderStr = function () {
+        var res = "<?php\n\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Database\\Migrations\\Migration;\n\nclass Create" + this.table.name.replace("__", "Xxxx").replace("_", "Xxx") + "Table extends Migration\n{\n  /**\n   * Run the migrations.\n   *\n   * @return void\n   */\n  public function up()\n  {\n    Schema::create('" + this.table.name_raw + "', function (Blueprint $table) {\n      " + (!this.table.findColumn("id").create_new ? "$table->increments('id');" : "") + "\n      " + _.map(this.table.cols, function (col) { return col.render("Migration"); }).join("\n") + "\n      $table->timestamps();\n\n      " + _.map(this.table.extra_index, function (x) { return "$table->index(" + JSON.stringify(x) + ");"; }) + "\n    });\n  }\n\n  /**\n   * Reverse the migrations.\n   *\n   * @return void\n   */\n  public function down()\n  {\n    Schema::dropIfExists('" + this.table.name_raw + "');\n  }\n\n}\n";
         return res;
-    }
+    };
     ;
-    renderParts() {
-    }
+    MigrationRenderer.prototype.renderParts = function () {
+    };
     ;
-}
-export default MigrationRenderer;
+    return MigrationRenderer;
+}(Renderer_1.default));
+exports.default = MigrationRenderer;
 //# sourceMappingURL=MigrationRenderer.js.map

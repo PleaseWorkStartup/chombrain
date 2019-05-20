@@ -2,13 +2,14 @@ import File from './File'
 import Table from '../lib/table';
 import Renderer from './Renderer';
 import * as _ from 'lodash'
+import * as path from 'path';
 
 class ControllerRenderer extends Renderer {
   public file: File;
   public table: Table;
   
   constructor(table: Table) {
-    super("../../app/Http/Controllers/Chombrain/"+table.name+"Controller.php")
+    super(path.join(process.cwd(),"../../app/Http/Controllers/Chombrain/"+table.name+"Controller.php"))
     this.table = table
   }
 
