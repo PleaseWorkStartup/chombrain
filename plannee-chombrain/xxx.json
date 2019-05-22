@@ -1,0 +1,22 @@
+{
+    "scripts": {
+        "watch": "tsc --watch"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.3.1",
+        "@types/lodash": "^4.14.119",
+        "@types/node": "^10.12.18",
+        "axios": "^0.18",
+        "babel-preset-env": "^1.7.0",
+        "cross-env": "^5.1",
+        "lodash": "^4.17.5",
+        "mysql": "^2.16.0"
+    },
+    "dependencies": {
+        "@types/fs-extra": "^5.0.4",
+        "dotenv": "^6.2.0",
+        "fs-extra": "^7.0.1",
+        "kebab-case": "^1.0.0",
+        "systemjs": "^3.0.0"
+    }
+}
