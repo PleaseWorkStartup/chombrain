@@ -84,7 +84,7 @@ git commit --amend -m "$message"
 
 echo -e $Green
 git pull origin master
-git subtree pull --prefix chombrain chombrain master --squash
+git subtree pull --prefix chombrain chombrain master
 
 echo -e $Yellow
 git push origin master

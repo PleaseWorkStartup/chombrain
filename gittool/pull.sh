@@ -77,7 +77,7 @@ cd ..
 
 echo -e $Green
 git pull origin master
-git subtree pull --prefix chombrain chombrain master --squash
+git subtree pull --prefix chombrain chombrain master
 
 echo -e $Color_Off
 
