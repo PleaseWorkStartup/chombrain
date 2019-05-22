@@ -1,1 +1,21 @@
-chombrain/tsconfig.json
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "*": ["types/*"] },
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "target": "ES5"
+  },
+  "include": [
+      "**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "vendor",
+      "**/*.spec.ts"
+  ],
+  "noImplicitAny": false
+}
